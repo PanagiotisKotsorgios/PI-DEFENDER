@@ -1,36 +1,17 @@
 
 
- #include "includes.h"           /**< @brief Custom header for common project includes. */
- #include <iostream>             /**< @brief Provides standard input-output stream objects. */
- #include <fstream>              /**< @brief Provides file stream classes for file I/O. */
- #include <sstream>              /**< @brief Provides string stream classes for in-memory string manipulation. */
- #include <cstdlib>              /**< @brief Provides general purpose functions, including dynamic memory management. */
- #include <sys/stat.h>           /**< @brief Provides structure and functions to obtain file status information. */
- #include <ctime>                /**< @brief Provides functions and types for manipulating date and time. */
- #include <dirent.h>             /**< @brief Provides functions for directory traversal (opendir, readdir, closedir). */
- #include <cstring>              /**< @brief Provides C string handling functions, such as strstr. */
- 
+ #include "includes.h"          
+ #include <iostream>             
+ #include <fstream>           
+ #include <sstream>           
+ #include <cstdlib>            
+ #include <sys/stat.h>         
+ #include <ctime>                
+ #include <dirent.h>             
+ #include <cstring>              
  using namespace std;
  
- /**
-  * @brief Reads and displays the latest scan results from a directory.
-  *
-  * This function searches the specified directory for files that match a naming pattern based on the provided tool name.
-  * It identifies the latest file (determined by modification time) and outputs its content to the standard output.
-  *
-  * @param directory The directory path where result files are stored.
-  * @param toolName The name of the tool whose result files are to be filtered and displayed. 
-  *                 Files must contain this tool name as part of their name.
-  *
-  * @return void This function does not return any value.
-  *
-  * @exception std::runtime_error Although not explicitly throwing exceptions, errors are reported via stderr.
-  *
-  * @note The function relies on POSIX functions (opendir, readdir, closedir, stat) for directory operations
-  *       and file status checking, hence it may not be portable to non-POSIX systems.
-  *
-  * @see opendir, readdir, closedir, stat, std::ifstream, std::ostringstream
-  */
+
  void displayResults(const std::string &directory, const std::string &toolName) {
      // Build search pattern using the directory and tool name prefix.
      std::string searchPattern = directory + "/" + toolName + "_";
