@@ -1,38 +1,24 @@
 
 
- #include "includes.h"           /**< @brief Custom header containing common project includes. */
+ #include "includes.h"        
 
- #include <fstream>              /**< @brief Provides file stream classes for file I/O operations. */
- #include <sstream>              /**< @brief Provides string stream classes for in-memory string manipulation. */
- #include <cstdlib>              /**< @brief Provides general purpose functions, including system calls. */
- #include <sys/stat.h>           /**< @brief Provides data returned by the stat() function. */
+ #include <fstream>            
+ #include <sstream>         
+ #include <cstdlib>              
+ #include <sys/stat.h>       
  
- #include <iostream>             /**< @brief Provides standard input-output stream objects. */
- #include <fstream>              /**< @brief Provides file stream classes for file I/O operations. */
- #include <sstream>              /**< @brief Provides string stream classes for in-memory string manipulation. */
- #include <cstdlib>              /**< @brief Provides general purpose functions, including system calls. */
+ #include <iostream>             
+ #include <fstream>            
+ #include <sstream>             
+ #include <cstdlib>           
  
- #include <ctime>                /**< @brief Provides functions and types for manipulating date and time. */
- #include <dirent.h>             /**< @brief Provides functions for directory traversal (opendir, readdir, closedir). */
- #include <cstring>              /**< @brief Provides functions for C-style string handling (e.g., strstr). */
+ #include <ctime>                
+ #include <dirent.h>          
+ #include <cstring>             
  #include <cstdio>  // For popen, fclose
 #include <memory>  // For unique_ptr
 #include "executer.h"
 #include <iomanip>
- /**
-  * @brief Creates a directory if it does not exist.
-  *
-  * This function checks whether a directory specified by @p dirName exists. If it does not exist,
-  * the function attempts to create the directory with permission mode 0777. Success or error messages
-  * are printed to the standard output.
-  *
-  * @param dirName The name (or path) of the directory to check and potentially create.
-  *
-  * @return void This function does not return a value.
-  *
-  * @note The function uses the stat() function to determine if the directory exists and mkdir() to create it.
-  *       It assumes a POSIX-compliant environment.
-  */
  void createDirectoryIfNeeded(const std::string &dirName) {
      struct stat info;
      if (stat(dirName.c_str(), &info) != 0) { // Directory doesn't exist
@@ -44,24 +30,6 @@
      }
  }
  
- /**
-  * @brief Executes a command and appends its output to a timestamped file in a given directory.
-  *
-  * This function ensures the specified directory exists, generates a unique output file name
-  * based on the current timestamp, and then executes the provided command. The command output is
-  * appended (using shell redirection) to the generated file. Finally, the function prints the location
-  * of the saved output.
-  *
-  * @param command The shell command to execute.
-  * @param directory The directory where the output file should be stored.
-  * @param toolName A string representing the tool's name. This is used as part of the output file name.
-  *
-  * @return void This function does not return a value.
-  *
-  * @note The timestamp in the output file name is formatted as "YYYY-MM-DD_HH-MM-SS".
-  *       The command output is redirected using the ">>" operator along with "2>&1" to capture both standard output and standard error.
-  *       This function uses the system() call, which may be a security risk if used with untrusted input.
-  */
 void executeCommand(const std::string &command, const std::string &directory, const std::string &toolName, int scanType) {
     // Ensure the directory exists (assuming createDirectoryIfNeeded is implemented elsewhere)
     createDirectoryIfNeeded(directory);
