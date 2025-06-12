@@ -1,61 +1,22 @@
 
-
-/**
- * @file includes_section.h
- * @brief Library Includes Section for the project.
- *
- * This file contains all the library inclusions required for the project.
- * Custom libraries are included first, followed by standard libraries.
- *
- * @details
- * - **Custom Libraries:**
- *   - @c includes.h: Contains most commonly used libraries in the project.
- *   - @c executer.h: Defines functions for the execution of the project.
- *   - @c display_results.h: Provides functions for displaying tool results.
- *   - @c scan_performer.h: Contains functions that handle tool usage (including system calls).
- *   - @c results_display.h: Manages the display of scan and log results.
- *
- * - **Standard Libraries:**
- *   - @c <stdexcept>: Required for exception handling in C++.
- *
- * @note Ensure that the custom headers are available in the include path.
- *
- * @see includes.h executer.h display_results.h scan_performer.h results_display.h
- */
-
 // Custom Libraries Section
-#include "includes.h"           /**< @brief Custom file for inclusion of mostly used libraries in the project. */
-#include "executer.h"           /**< @brief Custom file for the execution functions of the project. */
-#include "display_results.h"    /**< @brief Custom file for displaying the results of the tools. */
-#include "scan_performer.h"     /**< @brief Custom file that contains functions for performing scans (includes system calls). */
-#include "results_display.h"    /**< @brief Custom file for displaying the scan and log results. */
+#include "includes.h"          
+#include "executer.h"           
+#include "display_results.h"    
+#include "scan_performer.h"
+#include "results_display.h"    
 
 #include "fileSearcher.h"
 // Standard Libraries Section
-#include <stdexcept>            /**< @brief Standard header for exception handling in C++. */
+#include <stdexcept>           
 
 // Using standard namespace
-using namespace std;           /**< @brief Brings all the names from the std namespace into the global namespace. */
+using namespace std;           
 
 
 bool display_full_results = false;
 char display_full_results_temp = 'n';
-/**
- * @brief Prompts the user to select an operational mode.
- *
- * This function displays a menu of available modes and waits for user input. It validates
- * the input ensuring that the user selects either option 1 (Vulnerability Scan Mode) or 2 (N.I.D. & P. System Mode).
- *
- * @details If the user inputs an invalid option or a non-integer value, an exception is thrown and caught.
- * The error message is printed, and the function returns -1 to indicate an invalid selection.
- *
- * @exception std::invalid_argument Thrown if the user input is not 1 or 2.
- *
- * @return int Returns 1 or 2 based on the user's valid selection; returns -1 if invalid input is detected.
- *
- * @see PerformScanLevel(), PerformNidsMode()
- */
- 
+
  using namespace std;
  
 int selectMode(){;
@@ -83,23 +44,7 @@ int selectMode(){;
     }
 }
 
-/**
- * @brief Displays the vulnerability scanner menu and processes scan level selection.
- *
- * This function presents a detailed menu with options for various scan levels including basic, intermediate,
- * advanced, and custom scans. It prompts the user to select a scan level and provide a target (IP range or host).
- *
- * @details Depending on the chosen scan level, the function calls the respective scan function. 
- * Currently, only a basic scan operation (performScanLevel1) is implemented. Other scan levels are placeholders.
- * After performing the scan, it calls displayAllResults() to show the results.
- *
- * @note The functions performScanLevel1, performScanLevel2, performScanLevel3, performCustomScan, and displayAllResults
- * are assumed to be defined elsewhere.
- *
- * @return void This function does not return a value.
- *
- * @see selectMode()
- */
+
 void PerformScanLevel() {
     
     int scanLevel;
@@ -181,21 +126,7 @@ void PerformScanLevel() {
     
 }
 
-/**
- * @brief Displays the N.I.D. & P. System menu and executes the selected functionality.
- *
- * This function shows a menu for NIDS functionality with four levels: basic, intermediate, advanced, and custom.
- * It validates the user input and then calls the corresponding operation function based on the selection.
- *
- * @details The function uses exception handling to manage invalid inputs. If an invalid option is entered,
- * an exception is thrown and an error message is displayed.
- *
- * @exception std::invalid_argument Thrown if the user input is non-integer or outside the valid range (1-4).
- *
- * @return void This function does not return a value.
- *
- * @see selectMode()
- */
+
 void PerformNidsMode() {
     
 }
@@ -211,19 +142,6 @@ void activateFileSearcher() {
 
 
 
-/**
- * @brief Main function: Entry point for the program.
- *
- * This function first calls selectMode() to determine which mode the user wants to execute.
- * It then routes the program flow to either the Vulnerability Scanner mode or the N.I.D. & P. System mode.
- *
- * @details If the mode selected is invalid (indicated by -1), the program prompts the user to try again.
- * The function ensures a clean program exit after processing the user input.
- *
- * @return int Returns 0 upon successful program termination.
- *
- * @see selectMode(), PerformScanLevel(), PerformNidsMode()
- */
 int main(int argc, char* argv[]) {
     // Check if enough arguments are passed
     if (argc != 2) {
