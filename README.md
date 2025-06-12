@@ -5,7 +5,7 @@
 ## About the Project
 
 PI-DEFENDER is an innovative school project aimed at enhancing network scanning and vulnerability assessment.  
-The project seeks to equip users with an advanced tool for detecting, analyzing, and responding to potential network security threats.  
+The project seeks to equip users with an advanced tool for detecting, analyzing, and responding to potential network security threats using only a raspbery pi.  
 As this is a work in progress, PI-DEFENDER is continuously evolving with new features and improvements.  
 
 ## ⚠️ Disclaimer
